@@ -18,9 +18,6 @@ on              :
 jobs :
     build :
         runs-on : ubuntu-latest
-        defaults:
-            run :
-                working-directory : react-app
         steps   :
             - name : code checkout
               uses : actions/checkout@v4
