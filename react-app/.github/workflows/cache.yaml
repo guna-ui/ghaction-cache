@@ -1,0 +1,38 @@
+name            :   cache job workflow
+on              :
+    workflow_dispatch :
+        inputs  :
+            use-cache :
+                description : Whether to execute the cache step
+                type        : boolean
+                default     : true
+
+            node-version :
+                type : choice
+                options : 
+                - 18.x
+                - 19.x
+                - 20.x
+                default : 20.x
+
+jobs :
+    build :
+        runs-on : ubuntu-latest
+        defaults:
+            run :
+                working-directory : react-app
+        steps   :
+            - name : code checkout
+              uses : actions/checkout@v4
+            - name : Setup Node
+              uses : actions/setup-node@v3
+              with :
+                node-version : ${{inputs.node-version}}
+            - name : Install dependencies
+              run  : npm install
+            - name : Testing
+              run  : npm run test
+            - name : Building
+              run  : npm run build
+            - name : Deploying to nonprod
+              run  : echo "Deploying to nonprod"
