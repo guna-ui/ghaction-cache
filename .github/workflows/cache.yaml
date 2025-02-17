@@ -25,7 +25,7 @@ jobs :
             - name : code checkout
               uses : actions/checkout@v4
             - name: Debug - Check for package-lock.json
-              run: ls -la cache/react-app
+              run: ls -la react-app
             - name : Setup Node
               uses : actions/setup-node@v3
               with :
