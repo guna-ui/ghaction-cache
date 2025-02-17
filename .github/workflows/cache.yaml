@@ -36,6 +36,7 @@ jobs            :
             path : react-app/build   
     deploy:
         runs-on : ubuntu-latest
+        needs   : test-build
         steps  :
          - name  : Download Build artifact
            uses  : actions/download-artifact@v4
